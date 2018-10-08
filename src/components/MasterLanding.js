@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import FooterComponent from './container/Footer';
 import HeaderComponent from './container/Header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class MasterLanding extends Component {
   render() {
-    console.log(this.props);
+    let admin = this.props.location.pathname.includes('admin') ? 'admin' : '';
     return(
       <div>
-        <HeaderComponent/>
+        <ToastContainer/>
+        <HeaderComponent admin={admin}/>
         {this.props.children}
       </div>
     );

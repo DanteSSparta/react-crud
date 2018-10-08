@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
-import { Router, browserHistory } from 'react-router';
-import Route from 'react-router/lib/Route';
-import AppRoutes from './AppRoutes';
-import logo from './logo.svg';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import './App.css';
 import MasterLanding from './components/MasterLanding';
-import FormContainer from "./components/container/FormContainer";
+import AdminArticles from "./components/container/adminPanel/Articles";
+import AdminCategories from "./components/container/adminPanel/Categories";
+import AdminRecipes from "./components/container/adminPanel/Recipes";
+import AdminPanel from "./components/container/adminPanel/AdminPanel";
+import HomePage from "./components/container/HomePage";
+import Articles from "./components/container/Articles";
+import Categories from "./components/container/Categories";
+import Recipes from "./components/container/Recipes";
 
 class App extends Component {
   render() {
     return (
       <Router history={browserHistory}>
         <Route path="/" component={MasterLanding}>
-    			<Route path="/category" component={FormContainer}/>
+          <IndexRoute component={HomePage}/>
+          <Route path="/categories" component={Categories}/>
+          <Route path="/articles" component={Articles}/>
+          <Route path="/recipes" component={Recipes}/>
+
+          <Route path="/admin" component={AdminPanel}/>
+          <Route path="/admin/categories" component={AdminCategories}/>
+          <Route path="/admin/articles" component={AdminArticles}/>
+          <Route path="/admin/recipes" component={AdminRecipes}/>
     		</Route>
       </Router>
     );

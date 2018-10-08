@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Articles from './../../presentational/adminPanel/Articles';
+import ViewTable from './../../presentational/adminPanel/ViewTable';
 import notificator from './../../../utils/notificator';
 import Spinner from './../../Spinner';
 
 class ContainerArticles extends Component {
-/*eslint-disable no-unused-vars*/
+  /*eslint-disable no-unused-vars*/
   state = {
     articles: [],
     category: []
@@ -104,15 +104,13 @@ class ContainerArticles extends Component {
           this.state.articles.length === 0 ?
           <Spinner/>
           :
-          <Articles
+          <ViewTable
             header = {header}
             body = {body}
-            articles = {this.state.articles}
+            value = {this.state.articles}
             category = {this.state.category}
-            createArticle = {this.createArticle}
             deleteArticle = {this.deleteArticle}
             editArticle = {this.editArticle}
-            saveArticle = {this.saveArticle}
           />
         }
       </div>

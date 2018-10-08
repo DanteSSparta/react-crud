@@ -4,36 +4,39 @@ import edit from './../../../icons/edit.svg';
 import cancel from './../../../icons/cancel.svg';
 import garbage from './../../../icons/garbage.svg';
 
-class Articles extends Component {
+class ViewTable extends Component {
 
 
   render() {
-    let list = this.props.articles.map(article => (
-      <tr key={article._id}>
-        <td>{article.title}</td>
-        <td>{article.text}</td>
-        <td>{article.description}</td>
-        <td>{article.categoryId}</td>
+    let tableBody = this.props.value.map(tag => (
+      <tr key={tag._id}>
+        {
+          this.props.body.map((elem , i) => (
+            <td key={tag._id + i}>{tag[elem]}</td>
+          ))
+        }
         <td>
-          <ActionImage src={edit} alt="edit" onClick={()=>this.props.editArticle(article)}/>
-          <ActionImage src={garbage} alt="delete" onClick={()=>this.props.deleteArticle(article._id)}/>
+          <ActionImage src={edit} alt="edit" onClick={()=>this.props.editArticle(tag)}/>
+          <ActionImage src={garbage} alt="delete" onClick={()=>this.props.deleteArticle(tag._id)}/>
         </td>
       </tr>
     ));
+    let tableHead =
+      <tr>
+        {
+          this.props.header.map((elem, i) => (
+            <td key={i}>{elem}</td>
+          ))
+        }
+      </tr>;
     return(
       <div>
         <table>
           <thead>
-            <tr>
-              <td>Title</td>
-              <td>Text</td>
-              <td>Description</td>
-              <td>Category</td>
-              <td>Action</td>
-            </tr>
+            {tableHead}
           </thead>
           <tbody>
-            {list}
+            {tableBody}
           </tbody>
         </table>
       </div>
@@ -41,7 +44,7 @@ class Articles extends Component {
   }
 }
 
-export default Articles;
+export default ViewTable;
 
 const ActionImage = styled.img`
   witdh: 20px;

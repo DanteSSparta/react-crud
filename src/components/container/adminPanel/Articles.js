@@ -16,13 +16,13 @@ class ContainerArticles extends Component {
   }
 
   deleteArticle = (id) => {
-    fetch('https://test-task-server.herokuapp.com/api/v1/article/131412312s', { method: "DELETE" })
+    fetch('https://test-task-server.herokuapp.com/api/v1/article/' + id, { method: "DELETE" })
       .then(res => {
         if (res.status >= 400) {
           notificator({error: [res.statusText]});
         }
         else {
-          notificator({success: ['Success']});
+          notificator({success: ['Article delete']});
         }
       })
       .then(
@@ -32,7 +32,6 @@ class ContainerArticles extends Component {
           })
           .then(articles => {
             this.setState({articles});
-            notificator({success: ['Success']});
           })
       );
   }
@@ -100,6 +99,7 @@ class ContainerArticles extends Component {
     return(
       <div className='container'>
         <h1>Articles admin</h1>
+        <a href="/admin/articles/create">Create a article</a>
         {
           this.state.articles.length === 0 ?
           <Spinner/>

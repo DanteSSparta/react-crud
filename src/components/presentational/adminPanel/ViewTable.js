@@ -31,14 +31,14 @@ class ViewTable extends Component {
       </tr>;
     return(
       <div>
-        <table>
+        <StyledTable>
           <thead>
             {tableHead}
           </thead>
           <tbody>
             {tableBody}
           </tbody>
-        </table>
+        </StyledTable>
       </div>
     );
   }
@@ -50,4 +50,13 @@ const ActionImage = styled.img`
   witdh: 20px;
   height: 20px;
   cursor: pointer;
+`;
+
+const StyledTable = styled.table`
+  width: 100%;
+  display: table;
+  margin: 0;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
 `;

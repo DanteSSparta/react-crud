@@ -1,6 +1,12 @@
 import actionResolve from './actionResolver';
 import ScamFighterAPI from '../api/ScamFighterAPI';
 
+export const getAllArticles = () => {
+	return (dispatch) => {
+		
+	}
+}
+
 export const mostReadedAttempt = () => {
 	return (dispatch) => {
 		dispatch(actionResolve(ArticleType.GET_RECENT_AND_MOSTREADED_ATTEMPT));

@@ -1,9 +1,17 @@
 import actionResolve from './actionResolver';
-import ScamFighterAPI from '../api/ScamFighterAPI';
+import notificator from './../../../utils/notificator';
+import * as ArticlesType from '../constants/Article';
 
 export const getAllArticles = () => {
 	return (dispatch) => {
-		
+		fetch('https://test-task-server.herokuapp.com/api/v1/article/all')
+			.then(res => {
+				return res.json();
+			})
+			.then(articles => {
+				dispatch(actionResolve(ArticlesType.))
+				this.setState({articles});
+			});
 	}
 }
 

@@ -3,6 +3,7 @@ import * as RecipeType from '../constants/Recipes';
 const defaultState = {
 	loading : false,
 	recipes : [],
+	recipeByCategory : false,
 	recipe : false,
 	error : {}
 };

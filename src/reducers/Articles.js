@@ -3,6 +3,7 @@ import * as ArticlesType from '../constants/Articles';
 const defaultState = {
 	loading : false,
 	articles : [],
+	articlesByCategory : false,
 	article : false,
 	error : {}
 };
@@ -53,7 +54,7 @@ export default (state = defaultState, action) => {
 		case ArticlesType.GET_ARTICLE_BY_CATEGORY_SUCCESS:
 			return { ...state,
 				loading : false,
-				articles : payload
+				articlesByCategory : payload
 			};
 
 		case ArticlesType.GET_ARTICLE_BY_CATEGORY_ERROR:

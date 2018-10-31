@@ -8,14 +8,8 @@ export default (state = defaultState, action) => {
 	const { type, payload } = action;
 
 	switch (type) {
-		case AdminPanelType.VIEW_STATE:
-			return { ...state, state : 'view' };
-
-		case AdminPanelType.CREATE_STATE:
-		  return { ...state, state : 'create' };
-
-		case AdminPanelType.EDIT_STATE:
-			return { ...state, state : 'edit' };
+		case AdminPanelType.ADMIN_PANEL_TOGGLE:
+			return { ...state, state : payload };
 
 		default:
 			return state;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import ViewTable from './../../presentational/adminPanel/ViewTable';
+import ViewTable from '../presentation/ViewTable';
 import notificator from './../../../utils/notificator';
 import Spinner from './../../Spinner';
+// import {  } from ''
 
 class ContainerArticles extends Component {
   /*eslint-disable no-unused-vars*/

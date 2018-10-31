@@ -1,6 +1,7 @@
 import actionResolve from './actionResolver';
 import notificator from './../../../utils/notificator';
 import * as ArticlesType from '../constants/Article';
+import * as AdminPanelType from '../constants/AdminPanel';
 
 export const getAllArticles = () => {
 	return (dispatch) => {
@@ -37,6 +38,7 @@ export const createArticle = (payload) => {
       .then(response => {
 				if (ok) {
 					dispatch(actionResolve(ArticlesType.CREATE_ARTICLE_SUCCESS, response));
+					dispatch(actionResolve(AdminPanelType.ADMIN_PANEL_TOGGLE, 'view'));
 				}
 				else {
 					dispatch(actionResolve(ArticlesType.CREATE_ARTICLE_ERROR, response));
@@ -132,13 +134,14 @@ export const updateArticle = (payload) => {
 					notificator({error: ['Some form fields are missing or incorrect.']});
 				}
 				else {
-					notificator({success: ['Article create']});
+					notificator({success: ['Article update']});
 				}
 				return res.json();
       })
       .then(response => {
 				if (ok) {
 					dispatch(actionResolve(ArticlesType.UPDATE_ARTICLE_SUCCESS, response));
+					dispatch(actionResolve(AdminPanelType.ADMIN_PANEL_TOGGLE, 'view'));
 				}
 				else {
 					dispatch(actionResolve(ArticlesType.UPDATE_ARTICLE_ERROR, response));

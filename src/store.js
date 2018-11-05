@@ -11,4 +11,4 @@ function configureStore() {
 		));
 }
 
-export const store = configureStore();
+export const defaultStore = configureStore();

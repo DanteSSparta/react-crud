@@ -1,4 +1,4 @@
-import * as ArticlesType from '../constants/Articles';
+import * as ArticlesType from 'constants/Articles';
 
 const defaultState = {
 	loading : false,

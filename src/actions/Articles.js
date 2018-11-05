@@ -1,7 +1,7 @@
 import actionResolve from './actionResolver';
-import notificator from './../../../utils/notificator';
-import * as ArticlesType from '../constants/Article';
-import * as AdminPanelType from '../constants/AdminPanel';
+import notificator from 'utils/notificator';
+import * as ArticlesType from 'constants/Articles';
+import * as AdminPanelType from 'constants/AdminPanel';
 
 export const getAllArticles = () => {
 	return (dispatch) => {

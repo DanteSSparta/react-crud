@@ -8,6 +8,7 @@ class Spinner extends Component {
     return(
       <StyledDiv>
         <Loader type="Circles" color="#3c567b" height={100} width={100} />
+        <div>Loading...</div>
       </StyledDiv>
     );
    }
@@ -18,5 +19,8 @@ export default Spinner;
 const StyledDiv = styled.div`
   padding-top: 100px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 140px;
+  justify-content: space-between;
 `;

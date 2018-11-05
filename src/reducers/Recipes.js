@@ -96,7 +96,7 @@ export default (state = defaultState, action) => {
 		case RecipeType.UPDATE_RECIPE_SUCCESS:
 			return { ...state,
 				loading : false,
-				recipes : state.recipes.map(item => { return item._id == payload._id ? payload : item })
+				recipes : state.recipes.map(item => { return item._id === payload._id ? payload : item })
 			};
 
 		case RecipeType.UPDATE_RECIPE_ERROR:

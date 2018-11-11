@@ -3,7 +3,9 @@ import ViewTable from 'components/AdminPanel/presentation/ViewTable';
 import notificator from 'utils/notificator';
 import Spinner from 'components/Spinner';
 import { connect } from 'react-redux';
-import { getAllArticles, createArticle, deleteArticle, updateArticle } from 'actions/Articles';
+import { getAllArticles, createArticle, deleteArticle, updateArticle, getArticle } from 'actions/Articles';
+import { getAllCategories } from 'actions/Categories';
+import { adminPanelToggle } from 'actions/AdminPanel';
 
 class ContainerArticles extends Component {
 
@@ -27,7 +29,6 @@ class ContainerArticles extends Component {
             header = {header}
             body = {body}
             value = {this.props.articles}
-            // category = {this.state.category}
             deleteArticle = {this.deleteArticle}
             editArticle = {this.editArticle}
           />

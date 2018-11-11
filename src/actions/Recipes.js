@@ -12,7 +12,8 @@ export const getAllRecipes = () => {
 			})
 			.then(repices => {
 				dispatch(actionResolve(RecipeType.GET_ALL_RECIPE_SUCCESS, repices))
-			});
+			})
+			.catch(error => notificator({error: error}) );
 	}
 }
 
@@ -43,40 +44,42 @@ export const createRecipe = (payload) => {
 				else {
 					dispatch(actionResolve(RecipeType.CREATE_RECIPE_ERROR, response));
 				}
-      });
+      })
+			.catch(error => notificator({error: error}) );
 	}
 }
 
 export const deletRecipe = (payload) => {
 	return (dispatch) => {
 		let ok = true;
-		dispatch(actionResolve(RecipeType.DELETE_ARTICLE_ATTEMPT));
+		dispatch(actionResolve(RecipeType.DELETE_RECIPE_ATTEMPT));
 		fetch('https://test-task-server.herokuapp.com/api/v1/recipe/' + payload, { method: "DELETE" })
       .then(res => {
 				if (res.status >= 400) {
 					ok = false;
-					notificator({error: ['Some form fields are missing or incorrect.']});
+					notificator({error: ['Data not found']});
 				}
 				else {
-					notificator({success: ['Article delete']});
+					notificator({success: ['Recipe delete']});
 				}
 				return res.json();
       })
       .then(response => {
 				if (ok) {
-					dispatch(actionResolve(RecipeType.DELETE_ARTILCE_SUCCESS, response));
+					dispatch(actionResolve(RecipeType.DELETE_RECIPE_SUCCESS, response));
 				}
 				else {
-					dispatch(actionResolve(RecipeType.DELETE_ARTILCE_ERROR, response));
+					dispatch(actionResolve(RecipeType.DELETE_RECIPE_ERROR, response));
 				}
-      });
+      })
+			.catch(error => notificator({error: error}) );
 	}
 }
 
 export const getRecipesByCategory = (payload) => {
 	return (dispatch) => {
 		let ok = true;
-		dispatch(actionResolve(RecipeType.GET_ARTICLE_BY_CATEGORY_ATTEMPT));
+		dispatch(actionResolve(RecipeType.GET_RECIPE_BY_CATEGORY_ATTEMPT));
 		fetch('https://test-task-server.herokuapp.com/api/v1/recipe/byCategory/' + payload)
       .then(res => {
 				if (res.status >= 400) {
@@ -87,19 +90,20 @@ export const getRecipesByCategory = (payload) => {
       })
       .then(response => {
 				if (ok) {
-					dispatch(actionResolve(RecipeType.GET_ARTICLE_BY_CATEGORY_SUCCESS, response));
+					dispatch(actionResolve(RecipeType.GET_RECIPE_BY_CATEGORY_SUCCESS, response));
 				}
 				else {
-					dispatch(actionResolve(RecipeType.GET_ARTICLE_BY_CATEGORY_ERROR));
+					dispatch(actionResolve(RecipeType.GET_RECIPE_BY_CATEGORY_ERROR));
 				}
-      });
+      })
+			.catch(error => notificator({error: error}) );
 	}
 }
 
 export const getRecipe = (payload) => {
 	return (dispatch) => {
 		let ok = true;
-		dispatch(actionResolve(RecipeType.GET_ARTICLE_ATTEMPT));
+		dispatch(actionResolve(RecipeType.GET_RECIPE_ATTEMPT));
 		fetch('https://test-task-server.herokuapp.com/api/v1/recipe/item/' + payload)
       .then(res => {
 				if (res.status >= 400) {
@@ -110,21 +114,22 @@ export const getRecipe = (payload) => {
       })
       .then(response => {
 				if (ok) {
-					dispatch(actionResolve(RecipeType.GET_ARTICLE_SUCCESS, response));
+					dispatch(actionResolve(RecipeType.GET_RECIPE_SUCCESS, response));
 				}
 				else {
-					dispatch(actionResolve(RecipeType.GET_ARTICLE_ERROR));
+					dispatch(actionResolve(RecipeType.GET_RECIPE_ERROR));
 				}
-      });
+      })
+			.catch(error => notificator({error: error}) );
 	}
 }
 
 export const updateRecipe = (payload) => {
 	return (dispatch) => {
 		let ok = true;
-		dispatch(actionResolve(RecipeType.UPDATE_ARTICLE_ATTEMPT));
-		fetch('https://test-task-server.herokuapp.com/api/v1/recipe/create', {
-			method: 'POST',
+		dispatch(actionResolve(RecipeType.UPDATE_RECIPE_ATTEMPT));
+		fetch('https://test-task-server.herokuapp.com/api/v1/recipe/update', {
+			method: 'PUT',
 			body: JSON.stringify(payload),
 			headers: { 'Content-Type': 'application/json'}
 		})
@@ -134,18 +139,19 @@ export const updateRecipe = (payload) => {
 					notificator({error: ['Some form fields are missing or incorrect.']});
 				}
 				else {
-					notificator({success: ['Article update']});
+					notificator({success: ['Recipe update']});
 				}
 				return res.json();
       })
       .then(response => {
 				if (ok) {
-					dispatch(actionResolve(RecipeType.UPDATE_ARTICLE_SUCCESS, response));
+					dispatch(actionResolve(RecipeType.UPDATE_RECIPE_SUCCESS, response));
 					dispatch(actionResolve(AdminPanelType.ADMIN_PANEL_TOGGLE, 'view'));
 				}
 				else {
-					dispatch(actionResolve(RecipeType.UPDATE_ARTICLE_ERROR, response));
+					dispatch(actionResolve(RecipeType.UPDATE_RECIPE_ERROR, response));
 				}
-      });
+      })
+			.catch(error => notificator({error: error}) );
 	}
 }

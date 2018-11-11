@@ -12,7 +12,7 @@ import Articles from "./components/container/Articles";
 import Categories from "./components/container/Categories";
 import Recipes from "./components/container/Recipes";
 
-class App extends Component {
+class AppRoute extends Component {
   render() {
     return (
       <Router history={browserHistory}>
@@ -34,4 +34,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default AppRoute;

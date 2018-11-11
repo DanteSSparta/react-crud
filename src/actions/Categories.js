@@ -3,24 +3,25 @@ import notificator from 'utils/notificator';
 import * as CategoryType from 'constants/Categories';
 import * as AdminPanelType from 'constants/AdminPanel';
 
-export const getAllArticles = () => {
+export const getAllCategories = () => {
 	return (dispatch) => {
-		dispatch(actionResolve(ArticlesType.GET_ALL_ARTICLES_ATTEMPT));
-		fetch('https://test-task-server.herokuapp.com/api/v1/article/all')
+		dispatch(actionResolve(CategoryType.GET_ALL_CATEGORY_ATTEMPT));
+		fetch('https://test-task-server.herokuapp.com/api/v1/category/all')
 			.then(res => {
 				return res.json();
 			})
-			.then(articles => {
-				dispatch(actionResolve(ArticlesType.GET_ALL_ARTICLES_SUCCESS, articles))
-			});
+			.then(categories => {
+				dispatch(actionResolve(CategoryType.GET_ALL_CATEGORY_SUCCESS, categories))
+			})
+			.catch(error => notificator({error: error}) );
 	}
 }
 
-export const createArticle = (payload) => {
+export const createCategory = (payload) => {
 	return (dispatch) => {
 		let ok = true;
-		dispatch(actionResolve(ArticlesType.CREATE_ARTICLE_ATTEMPT));
-		fetch('https://test-task-server.herokuapp.com/api/v1/article/create', {
+		dispatch(actionResolve(CategoryType.CREATE_CATEGORY_ATTEMPT));
+		fetch('https://test-task-server.herokuapp.com/api/v1/category/create', {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: { 'Content-Type': 'application/json'}
@@ -31,100 +32,56 @@ export const createArticle = (payload) => {
 					notificator({error: ['Some form fields are missing or incorrect.']});
 				}
 				else {
-					notificator({success: ['Article create']});
+					notificator({success: ['Category create']});
 				}
 				return res.json();
       })
       .then(response => {
 				if (ok) {
-					dispatch(actionResolve(ArticlesType.CREATE_ARTICLE_SUCCESS, response));
+					dispatch(actionResolve(CategoryType.CREATE_CATEGORY_SUCCESS, response));
 					dispatch(actionResolve(AdminPanelType.ADMIN_PANEL_TOGGLE, 'view'));
 				}
 				else {
-					dispatch(actionResolve(ArticlesType.CREATE_ARTICLE_ERROR, response));
+					dispatch(actionResolve(CategoryType.CREATE_CATEGORY_ERROR, response));
 				}
-      });
+      })
+			.catch(error => notificator({error: error}) );
 	}
 }
 
-export const deleteArticle = (payload) => {
+export const deleteCategory = (payload) => {
 	return (dispatch) => {
 		let ok = true;
-		dispatch(actionResolve(ArticlesType.DELETE_ARTICLE_ATTEMPT));
-		fetch('https://test-task-server.herokuapp.com/api/v1/article/' + payload, { method: "DELETE" })
+		dispatch(actionResolve(CategoryType.DELETE_CATEGORY_ATTEMPT));
+		fetch('https://test-task-server.herokuapp.com/api/v1/category/' + payload, { method: "DELETE" })
       .then(res => {
 				if (res.status >= 400) {
 					ok = false;
-					notificator({error: ['Some form fields are missing or incorrect.']});
+					notificator({error: ['Data not found']});
 				}
 				else {
-					notificator({success: ['Article delete']});
+					notificator({success: ['Category delete']});
 				}
 				return res.json();
       })
       .then(response => {
 				if (ok) {
-					dispatch(actionResolve(ArticlesType.DELETE_ARTILCE_SUCCESS, response));
+					dispatch(actionResolve(CategoryType.DELETE_CATEGORY_SUCCESS, response));
 				}
 				else {
-					dispatch(actionResolve(ArticlesType.DELETE_ARTILCE_ERROR, response));
+					dispatch(actionResolve(CategoryType.DELETE_CATEGORY_ERROR, response));
 				}
-      });
-	}
-}
-
-export const getArticlesByCategory = (payload) => {
-	return (dispatch) => {
-		let ok = true;
-		dispatch(actionResolve(ArticlesType.GET_ARTICLE_BY_CATEGORY_ATTEMPT));
-		fetch('https://test-task-server.herokuapp.com/api/v1/article/byCategory/' + payload)
-      .then(res => {
-				if (res.status >= 400) {
-					ok = false;
-					notificator({error: ['Category not found']});
-				}
-				return res.json();
       })
-      .then(response => {
-				if (ok) {
-					dispatch(actionResolve(ArticlesType.GET_ARTICLE_BY_CATEGORY_SUCCESS, response));
-				}
-				else {
-					dispatch(actionResolve(ArticlesType.GET_ARTICLE_BY_CATEGORY_ERROR));
-				}
-      });
+			.catch(error => notificator({error: error}) );
 	}
 }
 
-export const getArticle = (payload) => {
+export const updateCategory = (payload) => {
 	return (dispatch) => {
 		let ok = true;
-		dispatch(actionResolve(ArticlesType.GET_ARTICLE_ATTEMPT));
-		fetch('https://test-task-server.herokuapp.com/api/v1/article/item/' + payload)
-      .then(res => {
-				if (res.status >= 400) {
-					ok = false;
-					notificator({error: ['Article not found']});
-				}
-				return res.json();
-      })
-      .then(response => {
-				if (ok) {
-					dispatch(actionResolve(ArticlesType.GET_ARTICLE_SUCCESS, response));
-				}
-				else {
-					dispatch(actionResolve(ArticlesType.GET_ARTICLE_ERROR));
-				}
-      });
-	}
-}
-
-export const updateArticle = (payload) => {
-	return (dispatch) => {
-		let ok = true;
-		dispatch(actionResolve(ArticlesType.UPDATE_ARTICLE_ATTEMPT));
-		fetch('https://test-task-server.herokuapp.com/api/v1/article/create', {
-			method: 'POST',
+		dispatch(actionResolve(CategoryType.UPDATE_CATEGORY_ATTEMPT));
+		fetch('https://test-task-server.herokuapp.com/api/v1/category/update', {
+			method: 'PUT',
 			body: JSON.stringify(payload),
 			headers: { 'Content-Type': 'application/json'}
 		})
@@ -134,18 +91,43 @@ export const updateArticle = (payload) => {
 					notificator({error: ['Some form fields are missing or incorrect.']});
 				}
 				else {
-					notificator({success: ['Article update']});
+					notificator({success: ['Category update']});
 				}
 				return res.json();
       })
       .then(response => {
 				if (ok) {
-					dispatch(actionResolve(ArticlesType.UPDATE_ARTICLE_SUCCESS, response));
+					dispatch(actionResolve(CategoryType.UPDATE_CATEGORY_SUCCESS, response));
 					dispatch(actionResolve(AdminPanelType.ADMIN_PANEL_TOGGLE, 'view'));
 				}
 				else {
-					dispatch(actionResolve(ArticlesType.UPDATE_ARTICLE_ERROR, response));
+					dispatch(actionResolve(CategoryType.UPDATE_CATEGORY_ERROR, response));
 				}
-      });
+      })
+			.catch(error => notificator({error: error}) );
+	}
+}
+
+export const getBreadcrumbs = (payload) => {
+	return dispatch => {
+		let ok = true;
+		dispatch(actionResolve(CategoryType.GET_CATEGORY_LIST_ATTEMPT));
+		fetch('https://test-task-server.herokuapp.com/api/v1/' + payload.for +'/categoryList/' + payload.id)
+			.then(res => {
+				if (res.status >= 400) {
+					ok = false;
+					notificator({error: ['Data not found']});
+				}
+				return res.json();
+			})
+			.then(response => {
+				if (ok) {
+					dispatch(actionResolve(CategoryType.GET_CATEGORY_LIST_SUCCESS, response));
+				}
+				else {
+					dispatch(actionResolve(CategoryType.GET_CATEGORY_LIST_ERROR, response));
+				}
+			})
+			.catch(error => notificator({error: error}) );
 	}
 }

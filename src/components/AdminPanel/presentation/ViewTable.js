@@ -31,6 +31,7 @@ class ViewTable extends Component {
       </tr>;
     return(
       <div>
+        <button onClick={this.props.createAction}>Create a article</button>
         <StyledTable>
           <thead>
             {tableHead}

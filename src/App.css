@@ -27,12 +27,6 @@
   to { transform: rotate(360deg); }
 }
 
-@font-face {
-  font-family: 'Roboto-Regular';
-  src: url(https://s3.amazonaws.com/staticimgbucket/laksjhdaskldfjlaljsafsp/Roboto-Regular.ttf);
-}
-
-
 .container {
   padding-right: 15px;
   padding-left: 15px;

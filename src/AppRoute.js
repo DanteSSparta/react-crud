@@ -6,7 +6,6 @@ import AdminArticles from "./components/AdminPanel/container/Articles";
 import AdminCategories from "./components/AdminPanel/container/Categories";
 import AdminRecipes from "./components/AdminPanel/container/Recipes";
 import AdminPanel from "./components/AdminPanel/container/AdminPanel";
-import CreateAndEdit from "./components/AdminPanel/presentation/CreateAndEdit";
 import HomePage from "./components/container/HomePage";
 import Articles from "./components/container/Articles";
 import Categories from "./components/container/Categories";
@@ -26,8 +25,6 @@ class AppRoute extends Component {
           <Route path="/admin/categories" component={AdminCategories}/>
           <Route path="/admin/articles" component={AdminArticles}/>
           <Route path="/admin/recipes" component={AdminRecipes}/>
-          <Route path="/admin/:model/create" component={CreateAndEdit}/>
-          <Route path="/admin/:model/edit/:id" component={CreateAndEdit}/>
     		</Route>
       </Router>
     );
